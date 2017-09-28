@@ -110,7 +110,6 @@ Order2::~Order2()
     qsa1[i].clear();
     qsa2[i].clear();
   }
-
   hsa.clear();
   usa.clear();
   vsa.clear();

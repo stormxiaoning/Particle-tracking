@@ -1120,6 +1120,23 @@ void Parameters::setparameters(const char *FILENAME, const char *folder_name)
     exit(EXIT_FAILURE);
   }
 
+  /*------------------------------rif_init:-----------------------------------------------*/
+  rif_init = atoi(fileParser.getValue("<rif_init>").c_str());
+  if (rif_init <1 || rif_init >5)
+  {
+    cerr << " parameters.txt: Error: initialization number " << rif_init << " for r, i and f does not exist." <<endl;
+    exit(EXIT_FAILURE);
+  }
+
+  /*------------------------------rif_NF:-------------------------------------------------*/
+  rif_NF = fileParser.getValue("<rif_NF>");
+  rif_namefile = path_input_directory + rif_NF;
+  if (1 == rif_init && -1 == access(rif_namefile.c_str(), R_OK))
+  {
+    cerr << " parameters.txt: Error: the rif file " << rif_NF << " does not exists in the directory Inputs."<< endl;
+    exit(EXIT_FAILURE);
+  }
+
   /*-----------------------------rain:----------------------------------------------------*/
   rain = atoi(fileParser.getValue("<rain>").c_str());
   if (rain < 0 || rain > 2)
@@ -1558,6 +1575,9 @@ void Parameters::setparameters(const char *FILENAME, const char *folder_name)
   param << "Initialization of h, u and v (1=file 2=h,u&v=0 3=Thacker 4=Radial_Dam_dry 5=Radial_Dam_wet)  <huv_init>:: " << huv_init << endl;
   param << "Name of the huv initialization file  <huv_NF>:: " << huv_NF << endl;
   param << endl;
+  param << "Initialization of r, i and f (1=file 2=r,i&f=0 3=Thacker 4=Radial_Dam_dry 5=Radial_Dam_wet)  <rif_init>:: " << rif_init << endl;
+  param << "Name of the rif initialization file  <rif_NF>:: " << rif_NF << endl;
+  param << endl;
   param << "Rain (0=no rain 1=file 2=function)  <rain>:: " << rain << endl;
   if (1 == rain)
   { // in case of rain read in a file
@@ -1916,22 +1936,40 @@ void Parameters::setparameters(const char *FILENAME, const char *folder_name)
   switch (huv_init)
   {
   case 1:
-    cout << "hu initial condition = file reading" << endl;
+    cout << "huv initial condition = file reading" << endl;
     break;
   case 2:
-    cout << "hu initial condition = h, u & v = 0 " << endl;
+    cout << "huv initial condition = h, u & v = 0 " << endl;
     break;
   case 3:
-    cout << "hu initial condition = function thacker" << endl;
+    cout << "huv initial condition = function thacker" << endl;
     break;
   case 4:
-    cout << "hu initial condition = function Radial_Dam_dry" << endl;
+    cout << "huv initial condition = function Radial_Dam_dry" << endl;
     break;
   case 5:
-    cout << "hu initial condition = function Radial_Dam_wet" << endl;
+    cout << "huv initial condition = function Radial_Dam_wet" << endl;
   }
-  cout << "---------------------------------------------------------" << endl;
 
+  cout << "---------------------------------------------------------" << endl;
+  switch (rif_init)
+  {
+    case 1:
+      cout << "rif initial condition = file reading" << endl;
+      break;
+    case 2:
+      cout << "rif initial condition = r, i & f = 0 " << endl;
+      break;
+    case 3:
+      cout << "rif initial condition = function thacker" << endl;
+      break;
+    case 4:
+      cout << "rif initial condition = function Radial_Dam_dry" << endl;
+    case 5:
+      cout << "rif initial condition = function Radial_Dam_wet" << endl;
+  }
+  
+  cout << "---------------------------------------------------------" << endl;
   switch (topo)
   {
   case 1:
@@ -2568,6 +2606,16 @@ int Parameters::get_huv() const
   return huv_init;
 }
 
+int Parameters::get_rif() const
+{
+  /**
+  * @details
+  * @return the value corresponding to the initialization of r, i, and f Parameters#rif_init.
+  */
+
+  return rif_init;
+}
+
 string Parameters::get_huvNameFile(void) const
 {
 
@@ -2579,6 +2627,16 @@ string Parameters::get_huvNameFile(void) const
   return huv_namefile;
 }
 
+string Parameters::get_rifNameFile(void) const
+{
+  /**
+  * @details
+  * @return the r, i, and f path for the initialization + Input directory Parameters#rif_namefile.
+  */
+
+  return rif_namefile;
+}
+
 string Parameters::get_huvNameFileS(void) const
 {
 
@@ -2588,6 +2646,16 @@ string Parameters::get_huvNameFileS(void) const
    */
 
   return huv_NF;
+}
+
+string Parameters::get_rifNameFileS(void) const
+{
+  /**
+  * @details
+  * @return the r, i, and f namefile for the initialization (inside the Input directory) Parameters#rif_NF.
+  */
+  return rif_NF;
+
 }
 
 int Parameters::get_rain() const

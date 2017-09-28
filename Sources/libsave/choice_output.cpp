@@ -143,8 +143,19 @@ void Choice_output::initial(const TAB & z, const TAB & h, const TAB & u, const T
   
 }
 
+
+void Choice_output::initial_rif(const TAB & rain_c, const TAB & infi_c, const TAB & fric_c) const
+{
+  /**
+   * @details
+   * Calls the saving of the initial time.
+   * @param[in] rain_c rainfall choice.
+   * @param[in] infi_c infiltration choice.
+   * @param[in] fric_c friction choice.
+  */
+  out->initial_rif(rain_c, infi_c, fric_c);
+}
 void Choice_output::final(const TAB & z, const TAB & h, const TAB & u, const TAB & v) const{
-  
   /**
    * @details
    * Calls the saving of the final time.

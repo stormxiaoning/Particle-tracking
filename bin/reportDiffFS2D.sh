@@ -88,7 +88,6 @@ HEADERLENGTH=7
 
 #Define which input file to use
 DIFF_FILE=$1
-
 $AWK_CMD '
 NR<=HEADERLENGTH {next}
 BEGIN{

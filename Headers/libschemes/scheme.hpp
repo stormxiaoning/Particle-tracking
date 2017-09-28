@@ -62,7 +62,6 @@
 #include "hydrostatic.hpp"
 #endif
 
-
 #ifndef CHOICE_CONDITION_HPP
 #include "choice_condition.hpp"
 #endif
@@ -85,6 +84,10 @@
 
 #ifndef CHOICE_INIT_HUV_HPP
 #include "choice_init_huv.hpp"
+#endif
+
+#ifndef CHOICE_INIT_RIF_HPP
+#include "choice_init_rif.hpp"
 #endif
 
 #ifndef CHOICE_RAIN_HPP
@@ -243,6 +246,13 @@ class Scheme{
     /** Second component of the velocity.*/
     TAB v;
     /** First component of the discharge.*/
+    /** Rainfall choice of each cell.*/
+    TAB rain_c;
+    /** Infiltration choice of each cell.*/
+    TAB infi_c;
+    /** Friction choice of each cell.*/
+    TAB fric_c;
+    /** First componant of the discharge.*/
     TAB q1;
     /** Second component of the discharge.*/
     TAB q2;
@@ -376,5 +386,6 @@ class Scheme{
     Choice_infiltration * I;
     Choice_init_topo * topo;
     Choice_init_huv * huv_init;
+    Choice_init_rif *rif_init;
 };
 #endif

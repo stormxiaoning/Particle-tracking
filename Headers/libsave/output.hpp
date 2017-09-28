@@ -86,6 +86,9 @@ class Output{
     /** @brief Saves the initial time */
     void initial(const TAB &, const TAB &, const TAB &, const TAB &) const;
     
+    /** @brief saved the initial rainfall, infiltration and friction choice*/
+    void initial_rif(const TAB &, const TAB &, const TAB &) const;
+
     /** @brief Saves the final time */
     void final(const TAB &, const TAB &, const TAB &, const TAB &) const;
     
@@ -118,6 +121,8 @@ class Output{
     string namefile_res;
     /** Name of the file where the initialization is saved.*/
     string namefile_init;
+    /** Name of the file where the initialization of rainfall, infiltration and friction choice are saved.*/
+    string namefile_init_rif;
     /** Name of the file where the final time is saved.*/
     string namefile_final;
     /** Name of the file where the cumulated boundary fluxes are saved.*/

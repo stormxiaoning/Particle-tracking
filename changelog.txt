@@ -404,7 +404,6 @@ and removal of \verb for $projectname.
 - Minor correction in the topo_read.cpp file.
 - Corrections in Benchmarks/Dry_Dam_Break/Inputs directory: Updated comments of huv_init.dat and topography files.
 - Minor corrections in the topo_read.cpp file: doxygen updated with warnings and replacing i iterator by it to make a difference with the iterator of the for loop. Replaced exit(-1) by exit(EXIT_FAILURE) and Error by ERROR.
-
 - Minor corrections in the huv_read.cpp file: doxygen updated with warnings and replacing i iterator by it to make a difference with the iterator of the for loop.
 - Minors corrections in the huv_read.cpp file: replaced exit(-1) by exit(EXIT_FAILURE) and Error by ERROR.
 
@@ -790,7 +789,6 @@ Modifications  before the 2010/11/05
 Modifications before the 2010/08/03
 - Added explicit friction in libfriction for erosion simulation
 - Erased specific variables in order2 to call bloc1, bloc2 and reconstruction
-
 Modifications before the 2010/07/03
 - Added the library libsave to gather all the output
 - New class to choose the type of the output file (only gnuplot for the moment)

@@ -283,6 +283,9 @@ class Parameters{
     /** @brief Gives the value corresponding to the choice of initialization of h, u and v*/
     int get_huv() const ;
     
+    /** @brief gives the value corresponding to the choice of initialization of r, i and f*/
+    int get_rif() const ;
+
     /** @brief Gives the value corresponding to the choice of initialization of rain */
     int get_rain() const ;
     
@@ -294,9 +297,15 @@ class Parameters{
     
     /** @brief Gives the full name of the file containing the water height (h) and the velocities (u and v) */
     string get_huvNameFile(void) const;
+
+    /** @brief gives the full name of the file containing the rainfall, infiltration and friction choice*/
+    string get_rifNameFile(void) const;
     
     /** @brief Gives the name of the file containing the water height (h) and the velocities (u and v) */
     string get_huvNameFileS(void) const;
+
+    /** @brief gives the name of the file containing the rainfall, inifiltration and friction choice*/
+    string get_rifNameFileS(void) const;
     
     /** @brief Gives the full name of the file containing the rain */
     string get_rainNameFile(void) const;
@@ -443,6 +452,8 @@ protected :
     int topo;
     /** Type of initial conditions for h and u,v.*/
     int huv_init;
+    /** Type of initial choice of Rainfall, infiltration and friction.*/
+    int rif_init;
     /** Type of rain.*/
     int rain;
     /** Type of initialization of Kc.*/
@@ -485,8 +496,12 @@ protected :
     string topo_NF;
     /** Name of the file for the initialization of h and u,v: Inputs/file.*/
     string huv_namefile;
+    /** Name of the file for the initialization of r and i,f: Inputs/file.*/
+    string rif_namefile;
     /** Name of the file for the initialization of h and u,v without 'Inputs'.*/
     string huv_NF;
+    /** Name of the file for the initialization of r and i,f without 'Inputs'.--find out the purpose04/07/2017*/ 
+    string rif_NF;
     /** Name of the file for the friction coefficient: Inputs/file.*/
     string fric_namefile;
     /** Name of the file for the friction coefficient without 'Inputs'.*/
